@@ -1,7 +1,7 @@
 import React from "react";
 
 const Heading = ({ tag: Tag, size, children, className }) => {
-  return <Tag className={size + ` ` + className}>{children}</Tag>;
+  return <Tag className={size + ` ${className ? className : ``}`}>{children}</Tag>;
 };
 
 export default Heading;

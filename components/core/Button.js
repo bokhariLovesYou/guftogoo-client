@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
 const Button = ({ variant, children, destination, type, className }) => {
   return (
-    <a href={destination}>
+    <Link href={destination}>
       <button
         className={`button 
         ${variant === `primary` ? `button-primary` : ``} 
@@ -13,7 +14,7 @@ const Button = ({ variant, children, destination, type, className }) => {
       >
         {children}
       </button>
-    </a>
+    </Link>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "@/components/layouts/Container";
 import Button from "@/components/core/Button";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -8,12 +9,14 @@ const Header = () => {
       <Container>
         <div className="flex justify-between items-center -m-2">
           <div className="p-2">
-            <span className="font-bold text-theme-primary text-xl">Guftogoo</span>
+            <Link href="/">
+              <span className="font-bold text-theme-primary text-xl cursor-pointer">Guftogoo</span>
+            </Link>
           </div>
           <div className="p-2">
             <div className="flex -mx-2">
               <div className="px-2">
-                <Button>Login</Button>
+                <Button destination="/login">Login</Button>
               </div>
               <div className="px-2">
                 <Button variant="secondary">Sign up</Button>
