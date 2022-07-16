@@ -7,7 +7,7 @@ import Button from "@/components/core/Button";
 import Header from "@/components/modules/Header";
 import Section from "@/components/layouts/Section";
 
-const Login = () => {
+const Signup = () => {
   return (
     <>
       <Header />
@@ -18,7 +18,7 @@ const Login = () => {
               <div className="max-w-md w-full space-y-8">
                 <div>
                   <Heading tag="h1" className="mt-6 text-center text-3xl font-extrabold">
-                    Sign in to your account
+                    Create an account on Guftogoo for free!
                   </Heading>
                 </div>
                 <form
@@ -29,11 +29,43 @@ const Login = () => {
                   <input type="hidden" name="remember" value="true" />
                   <div className="mb-6">
                     <div className="mb-4">
-                      <label htmlFor="email-address">
+                      <div className="flex -mx-2">
+                        <div className="px-2">
+                          <label htmlFor="firstName">
+                            <span className="text-sm mb-2 block">First Name</span>
+                          </label>
+                          <input
+                            id="firstName"
+                            name="firstName"
+                            type="firstName"
+                            autoComplete="firstName"
+                            required
+                            className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-theme-primary focus:border-theme-primary focus:z-10 sm:text-sm"
+                            placeholder=""
+                          />
+                        </div>
+                        <div className="px-2">
+                          <label htmlFor="lastName">
+                            <span className="text-sm mb-2 block">Last Name</span>
+                          </label>
+                          <input
+                            id="lastName"
+                            name="lastName"
+                            type="lastName"
+                            autoComplete="lastName"
+                            required
+                            className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-theme-primary focus:border-theme-primary focus:z-10 sm:text-sm"
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mb-4">
+                      <label htmlFor="email">
                         <span className="text-sm mb-2 block">Email address</span>
                       </label>
                       <input
-                        id="email-address"
+                        id="email"
                         name="email"
                         type="email"
                         autoComplete="email"
@@ -58,23 +90,15 @@ const Login = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center">
-                    <div className="text-sm mb-5">
-                      <a href="#" className="font-medium text-indigo-600 hover:text-theme-primary">
-                        Forgot your password?
-                      </a>
-                    </div>
-                  </div>
-
                   <div>
                     <Button variant="primary" className="w-full">
-                      Sign in
+                      Create Account
                     </Button>
                   </div>
                   <div className="mt-5 text-sm text-center">
                     <Link href="/create-account">
                       <span className="font-medium text-indigo-600 hover:text-theme-primary cursor-pointer">
-                        Don't have an account? Sign up for free
+                        Already have an account? Sign in
                       </span>
                     </Link>
                   </div>
@@ -88,4 +112,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

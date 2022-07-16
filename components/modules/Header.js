@@ -19,7 +19,9 @@ const Header = () => {
                 <Button destination="/login">Login</Button>
               </div>
               <div className="px-2">
-                <Button variant="secondary">Sign up</Button>
+                <Button destination="/create-account" variant="secondary">
+                  Sign up
+                </Button>
               </div>
             </div>
           </div>
