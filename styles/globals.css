@@ -1,16 +1,100 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family:Pacaembu;
+  src:url("https://d33wubrfki0l68.cloudfront.net/007a6152091569c2ef2d32c05896526ae64a32f7/f13d3/v3/_fonts/pacaembuvar-subset.woff2") 
+  format("woff2");
+  unicode-range:U+5,U+20,U+21,U+24,U+25,U+27,U+2B-2E,U+30-3A,U+3F,U+41-5A,U+61-7A,U+D7,U+2019;
+  font-weight:100 1000;
+  font-display:swap
+}
+  
+@font-face{
+  font-family:Mulish;
+  src:url("https://d33wubrfki0l68.cloudfront.net/e57ac908cd4a04ff2c67d6ac1e582a0fa3b666ca/80d68/v3/_fonts/mulishvar-subset.woff2") format("woff2");
+  unicode-range:U+5,U+20,U+21,U+24,U+25,U+27,U+2B-2E,U+30-3A,U+3F,U+41-5A,U+61-7A,U+D7,U+2019;
+  font-weight:200 900;
+  font-display:swap
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+body,html {
+  scroll-behavior: unset !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  /* overflow-x: hidden !important; */
+  color: #33475b;
+  /* font-family: "Mulish", sans-serif */
+  font-family: "Pacaembu", sans-serif
 }
 
-* {
-  box-sizing: border-box;
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+  line-height: 1.2;
+  color: #000;
+  font-family: "Pacaembu", sans-serif
+}
+
+h1,.h1 {
+  margin-bottom: 1rem;
+}
+h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+  margin-bottom: 0.5rem;
+}
+
+@layer base {
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-bold; 
+  }
+  h1,
+  .h1 {
+    @apply text-5xl;
+  }
+
+  h2,
+  .h2 {
+    @apply text-4xl;
+  }
+
+  h3,
+  .h3 {
+    @apply text-3xl;
+  }
+
+  h4,
+  .h4 {
+    @apply text-2xl;
+  }
+
+  h5,
+  .h5 {
+    @apply text-xl;
+  }
+
+  h6,
+  .h6 {
+    @apply text-lg;
+  }
+
+  body,
+  .p {
+    @apply text-base;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  .button {
+    @apply py-2 px-7 font-semibold rounded transition;
+  }
+  .button-primary {
+    @apply  bg-theme-primary text-white hover:bg-theme-primary-hover
+  }
+  .button-secondary {
+    @apply  bg-theme-secondary text-white hover:bg-theme-secondary-hover
+  }
+  .button-ghost {
+    @apply py-2 bg-theme-panel hover:bg-theme-panel-hover text-sm
+  }
 }
