@@ -1,10 +1,11 @@
+import React from "react";
 import Main from "@/components/layouts/Main";
 import Container from "@/components/layouts/Container";
 import Section from "@/components/layouts/Section";
 import Heading from "@/components/core/Heading";
 import Button from "@/components/core/Button";
 import Header from "@/components/modules/Header";
-import { DATA__TrendingTopics } from "@/lib/data";
+import { Schema__TrendingTopics, Schema__TrendingIndustries } from "@/lib/Schema";
 import TrendingArticles from "@/components/modules/TrendingArticles";
 import TrendingTopics from "@/components/TrendingTopics";
 
@@ -18,12 +19,15 @@ const Index = () => {
             <div className="flex -mx-3">
               <div className="px-3 w-full lg:max-w-[13%]">
                 <div className="py-6 Navigation text-sm sticky top-0">
-                  <TrendingTopics topics={DATA__TrendingTopics} />
+                  <TrendingTopics title="Trending Topics" topics={Schema__TrendingTopics} />
+                  <div className="mt-10">
+                    <TrendingTopics title="Industries" topics={Schema__TrendingIndustries} />
+                  </div>
                 </div>
               </div>
               <div className="px-3 w-full lg:max-w-[63%]">
                 <div className="Timeline border-l border-r">
-                  <div className="Timeline__Card bg-theme-primary text-white py-14 px-5 border-b">
+                  <div className="Timeline__Card bg-theme-primary text-white py-24 px-5 border-b">
                     <div className="Timeline__Card__Body mb-3">
                       <Heading className="text-white mb-5" tag="h1" size="h2">
                         A Community for employees by employees.

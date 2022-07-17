@@ -199,3 +199,9 @@ h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
     @apply py-2 bg-theme-panel hover:bg-theme-panel-hover text-sm
   }
 }
+
+@media (min-width: 1350px) {
+  .container {
+    max-width: 1400px;
+  }
+}

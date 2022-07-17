@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "@/components/layouts/Container";
 import Button from "@/components/core/Button";
 import Link from "next/link";
+import { useAppContext } from "@/context/AppWrapper";
 
 const Header = () => {
+  const { handlers, user } = useAppContext();
+  useEffect(() => {
+    handlers.checkLogin();
+  }, []);
   return (
     <header className="py-3 border-b">
       <Container>
@@ -14,16 +19,31 @@ const Header = () => {
             </Link>
           </div>
           <div className="p-2">
-            <div className="flex -mx-2">
-              <div className="px-2">
-                <Button destination="/login">Login</Button>
+            {user.isLoading ? (
+              <div className="animate-pulse">
+                <div className="w-48 bg-white h-10 rounded"></div>
               </div>
-              <div className="px-2">
-                <Button destination="/create-account" variant="secondary">
-                  Sign up
-                </Button>
-              </div>
-            </div>
+            ) : (
+              <>
+                {user.isLoggedIn && (
+                  <div className="px-2">
+                    <Button destination="/account">Account</Button>
+                  </div>
+                )}
+                {!user.isLoggedIn && (
+                  <div className="flex -mx-2">
+                    <div className="px-2">
+                      <Button destination="/login">Login</Button>
+                    </div>
+                    <div className="px-2">
+                      <Button destination="/create-account" variant="secondary">
+                        Sign up
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </Container>

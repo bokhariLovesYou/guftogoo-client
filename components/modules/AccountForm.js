@@ -12,6 +12,7 @@ const AccountForm = ({
   isValid,
   isLoading,
   errorMessage,
+  successMessage,
 }) => {
   return (
     <form onSubmit={onSubmit} className="mt-8 py-10 px-6 rounded-md bg-white border">
@@ -95,6 +96,15 @@ const AccountForm = ({
       {errorMessage && (
         <div className="text-xs text-red-800 mt-5 text-center">
           <span>{errorMessage}</span>
+        </div>
+      )}
+      {successMessage && (
+        <div className="bg-teal-100 text-xs mt-5 rounded text-teal-900 px-4 py-3" role="alert">
+          <div className="flex">
+            <div>
+              <span>{successMessage}</span>
+            </div>
+          </div>
         </div>
       )}
     </form>

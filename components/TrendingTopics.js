@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-const TrendingTopics = ({ topics }) => {
+const TrendingTopics = ({ topics, title }) => {
   return (
     <>
       <div className="mb-3">
         <div className="flex -mx-2 items-center">
           <div className="px-2">
-            <span className="font-bold text-theme-heading">Trending Topics</span>
+            <span className="font-bold text-theme-heading">{title}</span>
           </div>
           <div className="px-2">
             <svg
