@@ -1,13 +1,13 @@
 import React from "react";
-import Main from "@/components/layouts/Main";
-import Container from "@/components/layouts/Container";
-import Section from "@/components/layouts/Section";
+import Main from "@/components/wrappers/Main";
+import Container from "@/components/wrappers/Container";
+import Section from "@/components/wrappers/Section";
 import Heading from "@/components/core/Heading";
 import Button from "@/components/core/Button";
 import Header from "@/components/modules/Header";
 import { Schema__TrendingTopics, Schema__TrendingIndustries } from "@/lib/Schema";
 import TrendingArticles from "@/components/modules/TrendingArticles";
-import TrendingTopics from "@/components/TrendingTopics";
+import TrendingTopics from "@/components/modules/TrendingTopics";
 
 const Index = () => {
   return (

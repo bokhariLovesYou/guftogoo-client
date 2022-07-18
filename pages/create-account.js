@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Heading from "@/components/core/Heading";
-import Main from "@/components/layouts/Main";
-import Container from "@/components/layouts/Container";
+import Main from "@/components/wrappers/Main";
+import Container from "@/components/wrappers/Container";
 import Header from "@/components/modules/Header";
-import AccountForm from "@/components/modules/AccountForm";
-import Section from "@/components/layouts/Section";
+import Form from "@/components/modules/Form";
+import Section from "@/components/wrappers/Section";
 import { useForm } from "react-hook-form";
 import { Schema__Form__CreateAccount } from "@/lib/Schema";
 import axios from "axios";
@@ -38,7 +38,7 @@ const Signup = () => {
   const onSubmit = (data) => {
     setNewUser((prevState) => ({ ...prevState, isLoading: true }));
     const payload = {
-      username: data.username,
+      username: `@${data.username}`,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -86,7 +86,7 @@ const Signup = () => {
                         Create an account on Guftogoo for free!
                       </Heading>
                     </div>
-                    <AccountForm
+                    <Form
                       onSubmit={handleSubmit(onSubmit)}
                       register={register}
                       schema={Schema__Form__CreateAccount}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Main from "@/components/layouts/Main";
-import Container from "@/components/layouts/Container";
+import Main from "@/components/wrappers/Main";
+import Container from "@/components/wrappers/Container";
 import Heading from "@/components/core/Heading";
 import Header from "@/components/modules/Header";
-import Section from "@/components/layouts/Section";
-import AccountForm from "@/components/modules/AccountForm";
+import Section from "@/components/wrappers/Section";
+import Form from "@/components/modules/Form";
 import { useForm } from "react-hook-form";
 import { Schema__Form__Login } from "@/lib/Schema";
 import { setCookie } from "nookies";
@@ -94,7 +94,7 @@ const Login = () => {
                         Sign in to your account
                       </Heading>
                     </div>
-                    <AccountForm
+                    <Form
                       onSubmit={handleSubmit(onSubmit)}
                       register={register}
                       schema={Schema__Form__Login}

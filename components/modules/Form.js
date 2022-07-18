@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { Input } from "@/components/core/FormElements";
+import { Input, Textarea } from "@/components/core/FormElements";
 import Button from "@/components/core/Button";
 
-const AccountForm = ({
+const Form = ({
   onSubmit,
   schema,
   register,
@@ -26,16 +26,31 @@ const AccountForm = ({
                   <div className="flex -mx-2">
                     {elem.group.map((elem2) => {
                       return (
-                        <div className="px-2" key={elem2.name}>
-                          <Input
-                            key={elem2.name}
-                            label={elem2.label}
-                            name={elem2.name}
-                            type={elem2.type}
-                            validations={elem2.validations}
-                            register={register}
-                            errors={errors}
-                          />
+                        <div className="px-2 w-full" key={elem2.name}>
+                          {elem2.element === `input` && (
+                            <Input
+                              key={elem2.name}
+                              label={elem2.label}
+                              name={elem2.name}
+                              type={elem2.type}
+                              validations={elem2.validations}
+                              register={register}
+                              errors={errors}
+                            />
+                          )}
+                          {elem2.element === `textarea` && (
+                            <Textarea
+                              key={elem2.name}
+                              label={elem2.label}
+                              name={elem2.name}
+                              type={elem2.type}
+                              validations={elem2.validations}
+                              minRows={elem2.minRows}
+                              maxRows={elem2.maxRows}
+                              register={register}
+                              errors={errors}
+                            />
+                          )}
                         </div>
                       );
                     })}
@@ -43,15 +58,30 @@ const AccountForm = ({
                 </div>
               ) : (
                 <div className="mb-4" key={elem.name}>
-                  <Input
-                    key={elem.name}
-                    label={elem.label}
-                    name={elem.name}
-                    type={elem.type}
-                    validations={elem.validations}
-                    register={register}
-                    errors={errors}
-                  />
+                  {elem.element === `input` && (
+                    <Input
+                      key={elem.name}
+                      label={elem.label}
+                      name={elem.name}
+                      type={elem.type}
+                      validations={elem.validations}
+                      register={register}
+                      errors={errors}
+                    />
+                  )}
+                  {elem.element === `textarea` && (
+                    <Textarea
+                      key={elem.name}
+                      label={elem.label}
+                      name={elem.name}
+                      type={elem.type}
+                      validations={elem.validations}
+                      minRows={elem.minRows}
+                      maxRows={elem.maxRows}
+                      register={register}
+                      errors={errors}
+                    />
+                  )}
                 </div>
               )}
             </>
@@ -111,4 +141,4 @@ const AccountForm = ({
   );
 };
 
-export default AccountForm;
+export default Form;

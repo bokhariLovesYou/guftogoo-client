@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
+
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
@@ -31,6 +32,7 @@ export function AppWrapper({ children }) {
           setUser((prevState) => ({
             ...prevState,
             ...res.data,
+            token: token,
             isLoggedIn: true,
             isLoading: false,
           }));
@@ -41,6 +43,15 @@ export function AppWrapper({ children }) {
           setUser((prevState) => ({ ...prevState, isLoggedIn: false, isLoading: false }));
           return err.response;
         });
+    },
+    handleLogout: () => {
+      const cookies = parseCookies();
+      if (!cookies.token || !user.isLoggedIn) {
+        return null;
+      }
+      destroyCookie(null, "token");
+      destroyCookie(null, "id");
+      location.replace("/login");
     },
   };
 

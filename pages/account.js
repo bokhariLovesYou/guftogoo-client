@@ -1,6 +1,6 @@
 import React from "react";
-import Main from "@/components/layouts/Main";
-import Container from "@/components/layouts/Container";
+import Main from "@/components/wrappers/Main";
+import Container from "@/components/wrappers/Container";
 import Header from "@/components/modules/Header";
 
 const account = () => {

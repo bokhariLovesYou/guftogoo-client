@@ -6,10 +6,16 @@ const ProtectedRoute = ({ redirect }) => {
   useEffect(() => {
     handlers.checkLogin();
   }, []);
-  if (!user.isLoggedIn) {
-    location.replace({ redirect });
+  if (!user.isLoggedIn && !user.isLoading) {
+    if (typeof window !== "undefined") {
+      location.replace(redirect);
+    }
   }
-  return <></>;
+  return null;
 };
 
 export default ProtectedRoute;
+
+ProtectedRoute.defaultProps = {
+  redirect: `/login`,
+};

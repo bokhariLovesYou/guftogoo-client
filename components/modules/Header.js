@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import Container from "@/components/layouts/Container";
+import Container from "@/components/wrappers/Container";
 import Button from "@/components/core/Button";
 import Link from "next/link";
+import ProfileMenu from "@/components/modules/ProfileMenu";
 import { useAppContext } from "@/context/AppWrapper";
 
 const Header = () => {
@@ -25,11 +26,7 @@ const Header = () => {
               </div>
             ) : (
               <>
-                {user.isLoggedIn && (
-                  <div className="px-2">
-                    <Button destination="/account">Account</Button>
-                  </div>
-                )}
+                {user.isLoggedIn && <ProfileMenu />}
                 {!user.isLoggedIn && (
                   <div className="flex -mx-2">
                     <div className="px-2">
