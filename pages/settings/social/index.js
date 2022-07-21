@@ -3,13 +3,13 @@ import Settings from "@/components/layouts/Settings";
 import CardWrapper from "@/components/core/CardWrapper";
 import Form from "@/components/modules/Form";
 import { useAppContext } from "@/context/AppWrapper";
-import { Schema__Form__Profile } from "@/lib/Schema";
+import { Schema__Form__Social } from "@/lib/Schema";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { sleeper } from "@/lib/Helpers";
 import toast, { Toaster } from "react-hot-toast";
 
-const SettingsIndex = () => {
+const SettingsSocial = () => {
   const { user, recentlyUploadedImages, handlers } = useAppContext();
   const {
     register,
@@ -76,13 +76,13 @@ const SettingsIndex = () => {
   };
 
   return (
-    <Settings heading="User Settings">
+    <Settings heading="Social Accounts">
       <Toaster />
       <CardWrapper>
         <Form
           onSubmit={handleSubmit(onSubmit)}
           register={register}
-          schema={Schema__Form__Profile}
+          schema={Schema__Form__Social}
           errors={errors}
           isDirty={true}
           isValid={isValid}
@@ -95,4 +95,4 @@ const SettingsIndex = () => {
   );
 };
 
-export default SettingsIndex;
+export default SettingsSocial;

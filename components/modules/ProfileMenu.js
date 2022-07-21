@@ -5,12 +5,19 @@ import { useAppContext } from "@/context/AppWrapper";
 
 const ProfileMenu = () => {
   const { handlers, user } = useAppContext();
+  let avatarImage;
+  if (user.avatar) {
+    avatarImage = {
+      src: `${process.env.NEXT_PUBLIC_MEDIA_URL}${user.avatar.url}`,
+      alt: user.avatar.alternativeText,
+    };
+  }
   return (
     <>
       {user && (
         <Menu as="div" className="relative inline-block text-left">
           <Menu.Button className="">
-            <Avatar size="small" />
+            <Avatar size="small" image={avatarImage} />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -36,7 +43,7 @@ const ProfileMenu = () => {
                         <div className="flex -mx-1 items-center">
                           <div className="px-1">
                             <div className="mr-1">
-                              <Avatar />
+                              <Avatar image={avatarImage} />
                             </div>
                           </div>
                           <div className="px-1">

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Heading from "@/components/core/Heading";
-import Main from "@/components/wrappers/Main";
-import Container from "@/components/wrappers/Container";
+import Main from "@/components/layouts/Main";
+import Container from "@/components/layouts/Container";
 import Header from "@/components/modules/Header";
 import Form from "@/components/modules/Form";
-import Section from "@/components/wrappers/Section";
+import Section from "@/components/layouts/Section";
 import { useForm } from "react-hook-form";
 import { Schema__Form__CreateAccount } from "@/lib/Schema";
 import axios from "axios";

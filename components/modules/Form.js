@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Input, Textarea } from "@/components/core/FormElements";
 import Button from "@/components/core/Button";
+import Avatar from "@/components/core/Avatar";
 
 const Form = ({
   onSubmit,
@@ -13,7 +14,15 @@ const Form = ({
   isLoading,
   errorMessage,
   successMessage,
+  avatar,
 }) => {
+  let avatarImage;
+  if (avatar) {
+    avatarImage = {
+      src: `${process.env.NEXT_PUBLIC_MEDIA_URL}${avatar.url}`,
+      alt: avatar.alternativeText,
+    };
+  }
   return (
     <form onSubmit={onSubmit} className="mt-8 py-10 px-6 rounded-md bg-white border">
       <div className="mb-6">
@@ -80,6 +89,15 @@ const Form = ({
                       maxRows={elem.maxRows}
                       register={register}
                       errors={errors}
+                    />
+                  )}
+                  {elem.element === `avatar` && (
+                    <Avatar
+                      editable
+                      label={elem.label}
+                      image={avatarImage}
+                      size={elem.size}
+                      name={elem.name}
                     />
                   )}
                 </div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Main from "@/components/wrappers/Main";
-import Container from "@/components/wrappers/Container";
+import Main from "@/components/layouts/Main";
+import Container from "@/components/layouts/Container";
 import Heading from "@/components/core/Heading";
 import Header from "@/components/modules/Header";
-import Section from "@/components/wrappers/Section";
+import Section from "@/components/layouts/Section";
 import Form from "@/components/modules/Form";
 import { useForm } from "react-hook-form";
 import { Schema__Form__Login } from "@/lib/Schema";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Container from "@/components/wrappers/Container";
+import Container from "@/components/layouts/Container";
 import Button from "@/components/core/Button";
 import Link from "next/link";
 import ProfileMenu from "@/components/modules/ProfileMenu";

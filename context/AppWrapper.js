@@ -6,6 +6,9 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [globalState, setGlobalState] = useState(null);
+  const [recentlyUploadedImages, setRecentlyUploadedImages] = useState({
+    avatar: null,
+  });
   const [user, setUser] = useState({
     isLoading: true,
     isLoggedIn: false,
@@ -16,6 +19,7 @@ export function AppWrapper({ children }) {
     checkLogin: async () => {
       let token;
       const cookies = parseCookies();
+      const params = `?populate=avatar`;
       if (!cookies.token || user.isLoggedIn) {
         setUser((prevState) => ({ ...prevState, isLoading: false }));
         return null;
@@ -23,7 +27,7 @@ export function AppWrapper({ children }) {
       setUser((prevState) => ({ ...prevState, isLoading: true }));
       token = cookies.token;
       await axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, {
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me${params}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -44,6 +48,12 @@ export function AppWrapper({ children }) {
           return err.response;
         });
     },
+    mutateUser: (obj) => {
+      setUser((prevState) => ({
+        ...prevState,
+        ...obj,
+      }));
+    },
     handleLogout: () => {
       const cookies = parseCookies();
       if (!cookies.token || !user.isLoggedIn) {
@@ -53,10 +63,15 @@ export function AppWrapper({ children }) {
       destroyCookie(null, "id");
       location.replace("/login");
     },
+    handleSetRecentlyUploadedImages: (key, value) => {
+      setRecentlyUploadedImages((prevState) => ({ ...prevState, [key]: value }));
+    },
   };
 
   return (
-    <AppContext.Provider value={{ user, globalState, handlers }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ user, globalState, recentlyUploadedImages, handlers }}>
+      {children}
+    </AppContext.Provider>
   );
 }
 
