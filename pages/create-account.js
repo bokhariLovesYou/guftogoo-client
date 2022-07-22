@@ -73,7 +73,7 @@ const Signup = () => {
 
   return (
     <>
-      {!user.isLoggedIn && (
+      {!user.isLoggedIn && !user.isLoading && (
         <>
           <Header />
           <Main style={{ backgroundColor: "#fafbff", minHeight: "100vh" }}>

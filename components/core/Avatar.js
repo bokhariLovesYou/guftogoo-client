@@ -78,7 +78,7 @@ const Avatar = ({ image, size, editable, name, label }) => {
             )}
             {!uploadMedia.isLoading && (
               <>
-                {image && image.src && !media && (
+                {image && image.src && !media && user.avatar && (
                   <Image
                     layout="fill"
                     objectFit="cover"
@@ -157,7 +157,7 @@ export default Avatar;
 Avatar.defaultProps = {
   size: `default`,
   image: {
-    src: `/images/light.jpeg`,
+    src: `/images/default-avatar.png`,
     alt: ``,
   },
   editable: false,

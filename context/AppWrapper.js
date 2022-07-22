@@ -19,7 +19,7 @@ export function AppWrapper({ children }) {
     checkLogin: async () => {
       let token;
       const cookies = parseCookies();
-      const params = `?populate=avatar`;
+      const params = `?populate=avatar&populate=followers&populate=following`;
       if (!cookies.token || user.isLoggedIn) {
         setUser((prevState) => ({ ...prevState, isLoading: false }));
         return null;
@@ -59,14 +59,20 @@ export function AppWrapper({ children }) {
       if (!cookies.token || !user.isLoggedIn) {
         return null;
       }
-      destroyCookie(null, "token");
-      destroyCookie(null, "id");
+      destroyCookie(null, "token", {
+        path: "/",
+      });
+      destroyCookie(null, "id", {
+        path: "/",
+      });
       location.replace("/login");
     },
     handleSetRecentlyUploadedImages: (key, value) => {
       setRecentlyUploadedImages((prevState) => ({ ...prevState, [key]: value }));
     },
   };
+
+  console.log(user);
 
   return (
     <AppContext.Provider value={{ user, globalState, recentlyUploadedImages, handlers }}>
