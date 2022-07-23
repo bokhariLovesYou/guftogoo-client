@@ -9,6 +9,7 @@ const Button = ({
   type,
   className,
   withoutDestination,
+  onClick,
   disabled,
   isLoading,
 }) => {
@@ -23,14 +24,14 @@ const Button = ({
   return (
     <>
       {withoutDestination && (
-        <button className={clx} type={type} disabled={disabled}>
+        <button onClick={onClick} className={clx} type={type} disabled={disabled}>
           {isLoading && <Spinner button white />}
           {children}
         </button>
       )}
       {!withoutDestination && (
         <Link href={destination}>
-          <button className={clx} type={type} disabled={disabled}>
+          <button onClick={onClick} className={clx} type={type} disabled={disabled}>
             {children}
           </button>
         </Link>

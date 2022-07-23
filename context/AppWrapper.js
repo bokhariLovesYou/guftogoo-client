@@ -70,9 +70,49 @@ export function AppWrapper({ children }) {
     handleSetRecentlyUploadedImages: (key, value) => {
       setRecentlyUploadedImages((prevState) => ({ ...prevState, [key]: value }));
     },
+    handleFollow: (userId, intent) => {
+      if (!user.isLoggedIn) return false;
+      let following = user.following.map((elem) => elem.id);
+      if (intent === `unfollow`) {
+        following = following.filter((elem) => elem !== userId);
+      } else {
+        following.push(userId);
+      }
+      const payload = {
+        following,
+      };
+      const postPayload = async () => {
+        await axios
+          .put(`${process.env.NEXT_PUBLIC_API_URL}/users/${user.id}`, payload, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          })
+          .then((res) => {
+            if (intent === `unfollow`) {
+              setUser((prevState) => ({
+                ...prevState,
+                following: prevState.following.filter((elem) => elem.id !== userId),
+              }));
+            } else {
+              setUser((prevState) => ({
+                ...prevState,
+                following: [...prevState.following, { id: userId }],
+              }));
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            if (err.response) {
+              console.log(err.response.data.error.message);
+            }
+          });
+      };
+      postPayload();
+    },
   };
 
-  console.log(user);
+  // console.log(`global user object: `, user);
 
   return (
     <AppContext.Provider value={{ user, globalState, recentlyUploadedImages, handlers }}>

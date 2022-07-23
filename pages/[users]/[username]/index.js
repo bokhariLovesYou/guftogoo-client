@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Main from "@/components/layouts/Main";
 import Container from "@/components/layouts/Container";
 import Section from "@/components/layouts/Section";
@@ -9,10 +9,12 @@ import { Schema__TrendingTopics, Schema__TrendingIndustries } from "@/lib/Schema
 import TrendingTopics from "@/components/modules/TrendingTopics";
 import Avatar from "@/components/core/Avatar";
 import CardWrapper from "@/components/core/CardWrapper";
+import { useAppContext } from "@/context/AppWrapper";
 import { SSR__UserByUsernameGET } from "@/lib/Fetcher";
 import { format } from "date-fns";
 
 const UserIndex = ({ data }) => {
+  const { user, handlers } = useAppContext();
   data = data[0];
   const {
     id,
@@ -25,14 +27,23 @@ const UserIndex = ({ data }) => {
     followers,
     following,
   } = data;
-  console.log(id);
+  const [followersCount, setFollowersCount] = useState(followers.length);
   let avatarImage;
+  let followingIds;
+  let currentlyFollowing = false;
+  let myProfile = false;
   if (avatar) {
     avatarImage = {
       src: `${process.env.NEXT_PUBLIC_MEDIA_URL}${avatar.url}`,
       alt: `Profile Picture for ${firstName} ${lastName} at Guftogoo`,
     };
   }
+  if (user && user.isLoggedIn) {
+    followingIds = user.following.map((elem) => elem.id);
+    currentlyFollowing = followingIds.includes(id);
+    myProfile = id === user.id;
+  }
+  console.log(user);
   return (
     <>
       <Header />
@@ -54,8 +65,8 @@ const UserIndex = ({ data }) => {
                     <div className="px-16 py-12">
                       <div className="mb-12">
                         <div className="flex -mx-4 justify-between items-center">
-                          <div class="px-4">
-                            <div class="flex -mx-4 items-center">
+                          <div className="px-4">
+                            <div className="flex -mx-4 items-center">
                               <div className="px-4">
                                 <div className="">
                                   <Avatar image={avatarImage} size="extraLarge" />
@@ -78,7 +89,7 @@ const UserIndex = ({ data }) => {
                                   <div className="flex items-center -mx-2 text-sm">
                                     <div className="px-2">
                                       <p className="mb-0">
-                                        <strong>{followers.length}</strong> Followers
+                                        <strong>{followersCount}</strong> Followers
                                       </p>
                                     </div>
                                     <div className="px-2">
@@ -91,8 +102,38 @@ const UserIndex = ({ data }) => {
                               </div>
                             </div>
                           </div>
-                          <div class="px-4">
-                            <Button>Follow</Button>
+                          <div className="px-4">
+                            <>
+                              {!myProfile && (
+                                <>
+                                  {!user.isLoading && (
+                                    <>
+                                      {currentlyFollowing ? (
+                                        <Button
+                                          onClick={() => {
+                                            handlers.handleFollow(id, `unfollow`);
+                                            setFollowersCount(followersCount - 1);
+                                          }}
+                                          withoutDestination
+                                        >
+                                          Following
+                                        </Button>
+                                      ) : (
+                                        <Button
+                                          onClick={() => {
+                                            handlers.handleFollow(id);
+                                            setFollowersCount(followersCount + 1);
+                                          }}
+                                          withoutDestination
+                                        >
+                                          Follow
+                                        </Button>
+                                      )}
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </>
                           </div>
                         </div>
                       </div>
