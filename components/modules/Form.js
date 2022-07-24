@@ -15,6 +15,7 @@ const Form = ({
   errorMessage,
   successMessage,
   avatar,
+  removeWrapper,
 }) => {
   let avatarImage;
   if (avatar) {
@@ -24,7 +25,10 @@ const Form = ({
     };
   }
   return (
-    <form onSubmit={onSubmit} className="mt-8 py-10 px-6 rounded-md bg-white border">
+    <form
+      onSubmit={onSubmit}
+      className={`${removeWrapper ? `` : `mt-8 py-10 px-6 rounded-md bg-white border`}`}
+    >
       <div className="mb-6">
         {schema?.fields.map((elem, index) => {
           const { group } = elem;
@@ -40,6 +44,7 @@ const Form = ({
                             <Input
                               key={elem2.name}
                               label={elem2.label}
+                              autoComplete={elem2.autoComplete}
                               name={elem2.name}
                               type={elem2.type}
                               validations={elem2.validations}
@@ -72,6 +77,7 @@ const Form = ({
                       key={elem.name}
                       label={elem.label}
                       name={elem.name}
+                      autoComplete={elem.autoComplete}
                       type={elem.type}
                       validations={elem.validations}
                       register={register}

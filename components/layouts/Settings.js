@@ -21,9 +21,9 @@ const Settings = ({ heading, children }) => {
             <Section className="py-8">
               <Container>
                 <div className="flex -mx-2">
-                  <div className="px-2 w-[30%]">
+                  <div className="px-2 w-[20%]">
                     <CardWrapper>
-                      <Heading tag="h1" size="h3" className="mb-0">
+                      <Heading tag="h1" size="h4" className="mb-0">
                         {heading}
                       </Heading>
                     </CardWrapper>
@@ -76,7 +76,7 @@ const Settings = ({ heading, children }) => {
                       </button>
                     </CardWrapper>
                   </div>
-                  <div className="px-2 w-[70%]">{children}</div>
+                  <div className="px-2 w-[80%]">{children}</div>
                 </div>
               </Container>
             </Section>

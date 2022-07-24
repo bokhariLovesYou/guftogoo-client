@@ -69,9 +69,10 @@ const ProfileMenu = () => {
                       type="button"
                       className={`${
                         active ? "bg-theme-primary text-white" : "text-gray-900"
-                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm relative`}
                     >
                       <DraftsIcon />
+                      <a href={`/drafts`} className="absolute inset-0"></a>
                       My Drafts
                     </button>
                   )}

@@ -196,7 +196,10 @@ h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
     @apply  bg-theme-secondary text-white hover:bg-theme-secondary-hover
   }
   .button-ghost {
-    @apply py-2 bg-theme-panel hover:bg-theme-panel-hover text-sm
+    @apply py-2 bg-theme-panel hover:bg-theme-panel-hover border-2
+  }
+  .button-danger {
+    @apply py-2 bg-red-500 hover:bg-red-600 text-white
   }
 }
 

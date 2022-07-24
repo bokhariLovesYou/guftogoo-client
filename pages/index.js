@@ -5,7 +5,7 @@ import Section from "@/components/layouts/Section";
 import Heading from "@/components/core/Heading";
 import Button from "@/components/core/Button";
 import Header from "@/components/modules/Header";
-import { Schema__TrendingTopics, Schema__TrendingIndustries } from "@/lib/Schema";
+import { Schema__TrendingTopics } from "@/lib/Schema";
 import TrendingArticles from "@/components/modules/TrendingArticles";
 import TrendingTopics from "@/components/modules/TrendingTopics";
 
@@ -17,15 +17,12 @@ const Index = () => {
         <Section>
           <Container>
             <div className="flex -mx-3">
-              <div className="px-3 w-full lg:max-w-[13%]">
+              <div className="px-3 w-full lg:max-w-[17%]">
                 <div className="py-6 Navigation text-sm sticky top-0">
                   <TrendingTopics title="Trending Topics" topics={Schema__TrendingTopics} />
-                  <div className="mt-10">
-                    <TrendingTopics title="Industries" topics={Schema__TrendingIndustries} />
-                  </div>
                 </div>
               </div>
-              <div className="px-3 w-full lg:max-w-[63%]">
+              <div className="px-3 w-full lg:max-w-[60%]">
                 <div className="Timeline border-l border-r">
                   <div className="Timeline__Card bg-theme-primary text-white py-24 px-5 border-b">
                     <div className="Timeline__Card__Body mb-3">
@@ -123,7 +120,7 @@ const Index = () => {
                   })}
                 </div>
               </div>
-              <div className="px-3 w-full lg:max-w-[24%]">
+              <div className="px-3 w-full lg:max-w-[23%]">
                 <div className="LandingSidebar py-6 text-sm sticky top-0">
                   <TrendingArticles />
                 </div>

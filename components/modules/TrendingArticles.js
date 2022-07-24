@@ -1,36 +1,37 @@
 import React from "react";
 import Heading from "@/components/core/Heading";
+import CardWrapper from "@/components/core/CardWrapper";
 
 const TrendingArticles = () => {
   return (
-    <>
+    <CardWrapper>
       <div className="mb-2">
         <Heading tag="h2" size="h5">
-          Trending Articles
+          Trending
         </Heading>
       </div>
       <div className="mt-5">
         {[...Array(4)].map((elem, index) => {
           return (
-            <div key={index} className="px-5 py-5 bg-white border rounded mb-4">
-              <div className="flex -mx-2">
-                <div className="px-2 w-[25%]">
+            <div key={index} className={`mb-8 pb-8 ${index !== 3 ? `border-b` : ``}`}>
+              <div className="flex">
+                <div className="mr-3 w-[auto] min-w-[2.5rem]">
                   <div className="">
                     <img
-                      className="w-12 h-12"
-                      style={{ borderRadius: "100px" }}
+                      className="w-10 h-10"
+                      style={{ borderRadius: "100px", objectFit: `cover` }}
                       src="https://hashnode.com/_next/image?url=https%3A%2F%2Fcdn.hashnode.com%2Fres%2Fhashnode%2Fimage%2Fupload%2Fv1655371679782%2FzFqTqZbLP.jpeg%3Fw%3D500%26h%3D500%26fit%3Dcrop%26crop%3Dfaces%26auto%3Dcompress%2Cformat%26format%3Dwebp&w=3840&q=75"
                       alt=""
                     />
                   </div>
                 </div>
-                <div className="px-2 w-[75%]">
+                <div className="">
                   <div>
                     <Heading tag="h3" size="p">
                       What happens after adding display: flex?
                     </Heading>
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <span>Stas Melnikov</span>
                   </div>
                   <div className="mt-4">
@@ -89,7 +90,7 @@ const TrendingArticles = () => {
           );
         })}
       </div>
-    </>
+    </CardWrapper>
   );
 };
 
