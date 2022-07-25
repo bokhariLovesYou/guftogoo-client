@@ -61,6 +61,61 @@ h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
   width: 15px;
 }
 
+.COMPONENT__rich-text-editor {
+  color: #33475b;
+}
+.COMPONENT__rich-text-editor__header {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  /* padding: 0.25rem; */
+}
+.COMPONENT__rich-text-editor__header button {
+  transition: all 150ms ease-out 0s;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #0d0d0d;
+  height: 1.75rem;
+  margin-right: 0.25rem;
+  padding: 0.25rem;
+  width: 1.75rem;
+  border: 1px solid transparent;
+}
+.COMPONENT__rich-text-editor__header button svg {
+  fill: #425b76;
+  width: 18px;
+  height: 18px;
+}
+.COMPONENT__rich-text-editor__header button:not(.is-active):hover {
+  transition: all 150ms ease-out 0s;
+  background-color: #f7f7f7;
+  border: 1px solid #99acc2;
+}
+.COMPONENT__rich-text-editor__header button.is-active {
+  background: #cbd6e2;
+  border: 1px solid #99acc2;
+  border-radius: 3px;
+  display: inline-block;
+  height: 27px;
+  padding: 0px 4px;
+  vertical-align: middle;
+  transition: all 150ms ease-out 0s;
+}
+.COMPONENT__rich-text-editor__content-editable {
+  min-height: 14rem;
+  max-height: 18rem;
+  overflow-y: scroll;
+}
+.COMPONENT__rich-text-editor__content-editable-full-height {
+  max-height: calc(100vh - 370px);
+  max-width: 100%;
+}
+.COMPONENT__rich-text-editor__content-editable img.ProseMirror-selectednode {
+  outline: 2px solid #1798b3;
+}
+
 /* Keyframe Animations */
 @keyframes rotate {
   100% {
@@ -198,6 +253,11 @@ h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
   .button-ghost {
     @apply py-2 bg-theme-panel hover:bg-theme-panel-hover border-2
   }
+
+  .button-transparent {
+    @apply py-2 hover:bg-theme-panel-hover border-2
+  }
+
   .button-danger {
     @apply py-2 bg-red-500 hover:bg-red-600 text-white
   }

@@ -22,7 +22,7 @@ const Settings = ({ heading, children }) => {
               <Container>
                 <div className="flex -mx-2">
                   <div className="px-2 w-[20%]">
-                    <CardWrapper>
+                    <CardWrapper className="mb-4">
                       <Heading tag="h1" size="h4" className="mb-0">
                         {heading}
                       </Heading>
