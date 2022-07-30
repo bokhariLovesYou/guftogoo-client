@@ -68,7 +68,7 @@ const DraftsIndex = () => {
     setNewDraft((prevState) => ({ ...prevState, isLoading: true }));
     const payload = {
       data: {
-        title: data.articleTitle.trim(),
+        draftTitle: data.articleTitle.trim(),
         author: user.id,
         slug: `${slugify(data.articleTitle)}-${Date.now()}${user.id}${generateRandomNumber()}`,
         status: `draft`,
@@ -116,8 +116,10 @@ const DraftsIndex = () => {
             user.token,
           ]);
           toast.success(`${deleteIntent.title} deleted successfully`);
-          setDeleteDraft((prevState) => ({ ...prevState, isLoading: false }));
           handleModal(false);
+          setTimeout(() => {
+            setDeleteDraft((prevState) => ({ ...prevState, isLoading: false }));
+          }, 500);
         })
         .catch((err) => {
           console.log(err);
@@ -162,7 +164,7 @@ const DraftsIndex = () => {
                       </div>
                     </CardWrapper>
                   </div>
-                  {draftsLoading && (
+                  {(draftsLoading || deleteDraft.isLoading) && (
                     <>
                       {[...Array(4)].map((elem, index) => {
                         return (
@@ -236,7 +238,7 @@ const DraftsIndex = () => {
                                         <a
                                           href={destination}
                                           className="absolute inset-0 z-10 w-[100%] h-[100%]"
-                                          title={`Edit ${attributes.title}`}
+                                          title={`Edit ${attributes.draftTitle}`}
                                         ></a>
                                       </div>
                                       <div className="">
@@ -246,15 +248,15 @@ const DraftsIndex = () => {
                                             size="h4"
                                             className="hover:text-theme-primary"
                                           >
-                                            {attributes.title}
+                                            {attributes.draftTitle}
                                           </Heading>
                                         </a>
-                                        {attributes.description && (
-                                          <p className="mb-0">{attributes.description}</p>
+                                        {attributes.draftDescription && (
+                                          <p className="mb-3 mt-3">{attributes.draftDescription}</p>
                                         )}
                                         <p className="mb-0">
                                           <span className="text-gray-600">Last Updated: </span>
-                                          {format(new Date(attributes.updatedAt), "MMMM, d, yyyy")}
+                                          {format(new Date(attributes.updatedAt), "MMMM d, yyyy")}
                                         </p>
                                       </div>
                                     </div>
@@ -263,7 +265,10 @@ const DraftsIndex = () => {
                                     <div className="pl-4">
                                       <div className="flex items-center">
                                         <div className="">
-                                          <a href={destination} title={`Edit ${attributes.title}`}>
+                                          <a
+                                            href={destination}
+                                            title={`Edit ${attributes.draftTitle}`}
+                                          >
                                             <button
                                               type="button"
                                               className="hover:bg-gray-100 rounded-md px-3 py-2"
@@ -280,7 +285,7 @@ const DraftsIndex = () => {
                                             onClick={() => {
                                               setModalIntent(`delete`);
                                               setDeleteIntent({
-                                                title: attributes.title,
+                                                title: attributes.draftTitle,
                                                 id: elem.id,
                                               });
                                               handleModal(true);

@@ -28,7 +28,7 @@ const Button = ({
     <>
       {withoutDestination && (
         <button onClick={onClick} className={clx} type={type} disabled={disabled}>
-          {isLoading && <Spinner button white />}
+          {isLoading && <Spinner button white={variant !== `transparent`} />}
           {children}
         </button>
       )}

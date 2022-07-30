@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { EditorContent } from "@tiptap/react";
 
+// Site
 export const Input = ({
   label,
   name,
@@ -84,7 +85,8 @@ export const Textarea = ({
   );
 };
 
-const MenuBar = ({ editor }) => {
+// Editor
+const MenuBar = ({ editor, defaultContent }) => {
   // useEffect(() => {
   //   if (richTextMedia && richTextMedia.intent) {
   //     editor.chain().focus().setImage({ src: richTextMedia.src }).run();
@@ -94,6 +96,12 @@ const MenuBar = ({ editor }) => {
   if (!editor) {
     return null;
   }
+
+  useEffect(() => {
+    if (defaultContent) {
+      editor.commands.setContent(defaultContent);
+    }
+  }, []);
 
   return (
     <>
@@ -227,7 +235,11 @@ export const Richtext = (props) => {
         )}
         <div className="COMPONENT__rich-text-editor bg-white bg-clip-padding">
           <div className="COMPONENT__rich-text-editor__header bg-theme-panel rounded-md text-sm py-2 border-2 px-2 sticky top-0 z-10">
-            <MenuBar name={props.name} editor={props.editor} />
+            <MenuBar
+              name={props.name}
+              editor={props.editor}
+              defaultContent={props.defaultContent}
+            />
           </div>
           <div className="COMPONENT__rich-text-editor__body bg-white w-[100%]">
             <EditorContent editor={props.editor} />

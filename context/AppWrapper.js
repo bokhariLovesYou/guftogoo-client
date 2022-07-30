@@ -112,7 +112,7 @@ export function AppWrapper({ children }) {
     },
   };
 
-  // console.log(`global user object: `, user);
+  console.log(`global user object: `, user);
 
   return (
     <AppContext.Provider value={{ user, globalState, recentlyUploadedImages, handlers }}>
